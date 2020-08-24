@@ -1,0 +1,21 @@
+{
+    "name": "samrat131/column-sortable",
+    "description": "Add delete retrive settings/options to laravel application",
+    "license": "MIT",
+    "keywords": ["laravel", "laravel-column-sortable", "sortable"],
+    "authors": [
+        {
+            "name": "Samrat",
+            "email": "samrat0131@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Samrat131\\ColumnSortable\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
