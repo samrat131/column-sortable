@@ -29,7 +29,7 @@ class ColumnSortableServiceProvider extends ServiceProvider
     public function register()
     {
         app()->singleton('sortcolumn', function () {
-            return new SortColumn2;
+            return new SortColumn;
         });
     }
 }
