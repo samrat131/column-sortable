@@ -86,9 +86,13 @@ class SortColumn
         $arrowDir = $this->getArrowDirection($key);
 
         $params = $this->addRouteParam($params, $key);
-        // dd($this->request->route()->getUri());
 
-        return '<a href="'.url($this->request->route()->getUri(), $params[$key]).'"> '.$name.' <i class="fa '.$arrowDir.'"></i></a>';
+        // if ($this->request->route()->getName()) {
+        //     $href = route($this->request->route()->getName(), $params[$key]);
+        // }
+        $href = url()->current() .'?'. http_build_query($params[$key]);
+
+        return '<a href="'.$href.'"> '.$name.' <i class="fa '.$arrowDir.'"></i></a>';
     }
 
     protected function addRouteParam(array $params, $key)
