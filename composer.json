@@ -8,7 +8,7 @@
         "laravel-sortable",
         "column-sortable",
         "column-sort",
-        "sortable",
+        "sortable"
     ],
     "authors": [
         {
