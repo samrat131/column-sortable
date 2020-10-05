@@ -1,10 +1,11 @@
+
 # Laravel Column Sortable
 
 Sort laravel model view list by database column or field wise
 
 ## Installation
 
-To use cloumn-sortable in your project, please use Composer to add the package to your laravel applications
+To use this package in your project, please use Composer to add the package to your laravel applications
 
 ```
 composer require samrat131/column-sortable
@@ -38,17 +39,17 @@ class User extends Model
     use SortableTrait;
 
     protected $columnToSort = [
-        'id'=>'ID',
-        'name'=>'Name',
-        'email'=>'Email',
-        'created_at'=>'Created'
+        'id',
+        'name',
+        'email',
+        'created_at'
     ];
 
 ```
 
 ### Controller
 
-Use the `sorting()` method with the model like this `User::sorting()->get()` or `User::sorting()->paginate(15)`
+Use the `sortable()` method with the model like this `User::sortable()->get()` or `User::sortable()->paginate(15)`
 
 ```
 <?php
@@ -63,21 +64,26 @@ class HomeController extends Controller
 
     public function index()
     {
-        $users = User::sorting()->get();
-        return view('home', compact('users'));
+        $users = User::sortable()->get();
+        return view('users.index', compact('users'));
     }
 }
 ```
+You can set default sortable param like this `User::sortable(['created_at', 'desc'])->get()`
 
 ### View
 
-In the view blade.php file, `@sortable_column('id')` add this view method (blade directive) with db column/field name.
+In the view blade.php file, `@sortable_column('id', 'ID')` add this view method (blade directive) with db column/field name. 1st param (required) is for database field name, 2nd param (optional) is for frontend display.
 
 ```
 <tr>
-    <td>@sortable_column('id')</td>
-    <td>@sortable_column('name')</td>
-    <td>@sortable_column('email')</td>
-    <td>@sortable_column('created_at')</td>
+    <td>@sortable_link('id', 'ID')</td>
+    <td>@sortable_link('name', 'Name')</td>
+    <td>@sortable_link('email', 'Email')</td>
+    <td>@sortable_link('created_at', 'Created')</td>
 </tr>
 ```
+
+This package uses the font awesome icon for up and down arrow `fa fa-arrow-circle-down` and `fa fa-arrow-circle-up`
+
+Thanks

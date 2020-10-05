@@ -7,7 +7,7 @@ namespace Samrat131\ColumnSortable;
 */
 trait SortableTrait{
 
-	public function scopeSorting($query, array $default = [])
+	public function scopeSortable($query, array $default = [])
     {
         if (! is_array($this->columnToSort) || empty($this->columnToSort)) {
             return $query;

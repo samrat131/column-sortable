@@ -10,6 +10,7 @@ class SortColumn
     protected $order = null;
 
     protected $links = [];
+    protected $linksParam = [];
 
     protected $request;
 
@@ -25,6 +26,12 @@ class SortColumn
     public function getLinks()
     {
         return $this->links;
+    }
+
+    public function getLink($name, $title='')
+    {
+        $title = ($title=='') ? ucfirst($name) : $title;
+        return $this->generatelink($this->linksParam[$name], $name, $title);
     }
 
 	protected function flipSort($order)
@@ -46,7 +53,7 @@ class SortColumn
     public function sortColumn(array $column=[])
     {
 
-        foreach ($column as $key => $name) {
+        foreach ($column as $key) {
 
             if ($key == $this->sort) {
                 $sortOrder = $this->flipSort($this->order);
@@ -59,7 +66,8 @@ class SortColumn
             	'order' => $sortOrder,
             ];
 
-            $this->links[$key] = $this->generatelink($queryParams, $key, $name);
+            $this->links[$key] = $this->generatelink($queryParams, $key, ucfirst($key));
+            $this->linksParam[$key] = $queryParams;
         }
 
         return $this->getLinks();
@@ -92,7 +100,7 @@ class SortColumn
         // }
         $href = url()->current() .'?'. http_build_query($params[$key]);
 
-        return '<a href="'.$href.'"> '.$name.' <i class="fa '.$arrowDir.'"></i></a>';
+        return '<a href="'.$href.'"> '.$name.' <i class="'.$arrowDir.'"></i></a>';
     }
 
     protected function addRouteParam(array $params, $key)

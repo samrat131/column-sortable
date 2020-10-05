@@ -14,10 +14,9 @@ class ColumnSortableServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::directive('sortable_column', function($name) {
+        Blade::directive('sortable_link', function($name) {
             $name = str_replace(["(",")"], ["",""], $name);
-
-            return "<?php echo app()->make('sortcolumn')->getLinks()[$name]; ?>";
+            return "<?php echo app()->make('sortcolumn')->getLink($name); ?>";
         });
     }
 
